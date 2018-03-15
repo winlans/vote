@@ -43,14 +43,13 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'urlmanager' => [
+            'class' => 'yii\web\UrlManager',
+            'enableStrictParsing' => true,
+            'enableprettyurl' => true,
+            'showscriptname' => true,
+            'rules' => require('routing_rules.php')
         ],
-        */
     ],
     'params' => $params,
 ];
