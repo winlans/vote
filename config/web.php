@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => '在线投票',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -43,12 +44,13 @@ $config = [
             ],
         ],
         'db' => $db,
-        'urlmanager' => [
+        'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'enableStrictParsing' => true,
-            'enableprettyurl' => true,
-            'showscriptname' => true,
-            'rules' => require('routing_rules.php')
+            'enablePrettyUrl' => true,
+            'showScriptName' => true,
+            'rules' =>
+                array_merge(require('routing_rules.php'), require ('routing_backend.php'))
         ],
     ],
     'params' => $params,

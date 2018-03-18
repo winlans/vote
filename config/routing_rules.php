@@ -6,5 +6,10 @@
  * Time: 17:35
  */
 return array(
-    'user' => 'site/login'
+    'user/login' => 'site/login',
+    'user/logout' => 'site/logout',
+    'user/register' => 'site/register',
+    'site/captcha' => 'site/captcha',
+    '/' => 'site/index',
+
 );

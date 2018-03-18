@@ -2,42 +2,18 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
+use app\models\User;
+use app\util\UserInfoOperator;
+use app\vote\core\BaseController;
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
+use yii\helpers\Url;
 use yii\web\Response;
-use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -61,6 +37,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
         return $this->render('index');
     }
 
@@ -71,13 +48,13 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if ((new UserInfoOperator())->isLogined()) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->goHome();
         }
 
         $model->password = '';
@@ -89,13 +66,11 @@ class SiteController extends Controller
     /**
      * Logout action.
      *
-     * @return Response
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+       (new UserInfoOperator())->logout();
+       $this->goLogin();
     }
 
     /**
@@ -124,5 +99,15 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionRegister(){
+        $model = new SignupForm();
+
+        if (Yii::$app->request->isPost &&$model->load(Yii::$app->request->post()) && $model->register()){
+            return $this->redirect('/index.php/user/login');
+        }
+
+        return $this->render('register', ['model'=> ($model)]);
     }
 }

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` INT(11) AUTO_INCREMENT,
-  `username` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '用户名',
+  `username` VARCHAR(32) NOT NULL COMMENT '用户名',
   `password` VARCHAR(60) NOT NULL  COMMENT '密码',
   `role_id` INT(11) NOT NULL DEFAULT -1 COMMENT '角色id',
   `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -19,6 +19,8 @@ CREATE TABLE `article` (
   `descr` VARCHAR(600) NOT NULL DEFAULT '' COMMENT '投票描述',
   `deadline` TIMESTAMP NOT NULL COMMENT '投票结束时间',
   `type` TINYINT(4) NOT NULL DEFAULT 1 COMMENT '1 单选， 2 多选',
+  `perm` INT(11) NOT NULL DEFAULT -1 COMMENT '允许哪个角色投票 默认所有, 关联role id',
+  `user_id` INT(11) NOT NULL COMMENT '创建者',
   `updated` timestamp default current_timestamp on update current_timestamp,
   `created` timestamp default current_timestamp,
   `status` tinyint(4) not null default 1 comment '0 delete, 1 normal, 2 deadline',
