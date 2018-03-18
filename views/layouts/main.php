@@ -11,18 +11,18 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-$this->registerCssFile('/assets/backend/bootstrap/css/bootstrap.min.css');
-$this->registerCssFile('/assets/backend/bootstrap/css/bootstrap-responsive.min.css');
-$this->registerCssFile('/assets/backend/css/theme.css');
-$this->registerCssFile('/assets/backend/images/icons/css/font-awesome.css');
+$this->registerCssFile('/backend/bootstrap/css/bootstrap.min.css');
+$this->registerCssFile('/backend/bootstrap/css/bootstrap-responsive.min.css');
+$this->registerCssFile('/backend/css/theme.css');
+$this->registerCssFile('/backend/images/icons/css/font-awesome.css');
 $this->registerCssFile('http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600');
-$this->registerJsFile('/assets/backend/scripts/jquery-1.9.1.min.js');
-$this->registerJsFile('/assets/backend/scripts/jquery-ui-1.10.1.custom.min.js');
-$this->registerJsFile('/assets/backend/bootstrap/js/bootstrap.min.js');
-$this->registerJsFile('/assets/backend/scripts/flot/jquery.flot.js');
-$this->registerJsFile('/assets/backend/scripts/flot/jquery.flot.resize.js');
-$this->registerJsFile('/assets/backend/scripts/datatables/jquery.dataTables.js');
-$this->registerJsFile('/assets/backend/scripts/common.js');
+$this->registerJsFile('/backend/scripts/jquery-1.9.1.min.js');
+$this->registerJsFile('/backend/scripts/jquery-ui-1.10.1.custom.min.js');
+$this->registerJsFile('/backend/bootstrap/js/bootstrap.min.js');
+$this->registerJsFile('/backend/scripts/flot/jquery.flot.js');
+$this->registerJsFile('/backend/scripts/flot/jquery.flot.resize.js');
+$this->registerJsFile('/backend/scripts/datatables/jquery.dataTables.js');
+$this->registerJsFile('/backend/scripts/common.js');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

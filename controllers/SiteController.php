@@ -54,7 +54,8 @@ class SiteController extends BaseController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goHome();
+
+            return !(new UserInfoOperator())->isSuper()? $this->goHome() : $this->redirect('/index.php/backend/index');
         }
 
         $model->password = '';
